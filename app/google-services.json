@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "196308077305",
+    "firebase_url": "https://quicklift-ca19a.firebaseio.com",
+    "project_id": "quicklift-ca19a",
+    "storage_bucket": "quicklift-ca19a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:196308077305:android:bf9cd65f41c16423",
+        "android_client_info": {
+          "package_name": "com.example.narendra.quicklift2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "196308077305-pcvm2gldcrebfn8ohfspdd76i8uc349f.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.narendra.quicklift2",
+            "certificate_hash": "bdf94fa832c2bbfb6f26ecc0375b45ccda2fb230"
+          }
+        },
+        {
+          "client_id": "196308077305-kfitevqiokiu9p2p29kekt334k0nq0rq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAUzLzk3SbxfIb1ywRmREEc8pfH3AdXwXQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "196308077305-kfitevqiokiu9p2p29kekt334k0nq0rq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

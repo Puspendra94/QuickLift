@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:background="@drawable/a1">
+    <GridLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/grid_login"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:columnCount="3"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:text="Log In"
+            android:textSize="50sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_columnSpan="2"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/email_login"
+            android:hint="E-Mail"
+            android:layout_gravity="center_horizontal"
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_row="1"
+            android:layout_marginTop="10dp"/>
+
+        <EditText
+            android:id="@+id/pass_login"
+            android:hint="Password"
+            android:layout_gravity="center_horizontal"
+            android:gravity="left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_column="0"
+            android:layout_columnSpan="2"
+            android:layout_row="2"
+            android:layout_marginTop="10dp"/>
+
+        <Button
+            android:id="@+id/login"
+            android:text="Log In"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="5"
+            android:layout_columnSpan="1"
+            android:layout_marginTop="40dp"/>
+
+        <Button
+            android:id="@+id/login2signup"
+            android:text="SignUp Here"
+            android:layout_gravity="center"
+            android:textSize="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_column="1"
+            android:layout_row="6"
+            android:layout_columnSpan="1"
+            android:layout_marginTop="40dp"
+            />
+    </GridLayout>
+</ScrollView>

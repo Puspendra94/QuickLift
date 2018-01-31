@@ -1,0 +1,57 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:context="com.example.narendra.quicklift2.TwoFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <Button
+        android:id="@+id/bike"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:text="Bike" />
+
+    <Button
+        android:id="@+id/car"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:text="Car" />
+
+    <Button
+        android:id="@+id/shareCar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_button"
+        android:text="Share Car" />
+
+    <Button
+        android:id="@+id/auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto"
+        android:background="@drawable/round_button"/>
+
+    <Button
+        android:id="@+id/shareAuto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share Auto"
+        android:background="@drawable/round_button"/>
+
+    <Button
+        android:id="@+id/rickshaw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="E-Rickshaw"
+        android:background="@drawable/round_button"/>
+
+    <Button
+        android:id="@+id/shareRickshaw"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Share E-Rickshaw"
+        android:background="@drawable/round_button"/>
+</LinearLayout>
