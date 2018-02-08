@@ -17,9 +17,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.firebase.ui.auth.AuthUI;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+//import com.firebase.ui.auth.AuthUI;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.Task;
 
 import java.io.File;
 
@@ -95,31 +95,24 @@ public class AboutActivity extends AppCompatActivity
         if (id == R.id.nav_profile) {
             Intent profile = new Intent(AboutActivity.this,ProfileActivity.class);
             startActivity(profile);
-            finish();
         } else if (id == R.id.nav_rides) {
             Intent rides = new Intent(AboutActivity.this,RideActivity.class);
             startActivity(rides);
-            finish();
         } else if (id == R.id.nav_free_rides) {
             Intent free_ride = new Intent(AboutActivity.this,FreeRideActivity.class);
             startActivity(free_ride);
-            finish();
         } else if (id == R.id.nav_notif) {
             Intent notif = new Intent(AboutActivity.this,NotifActivity.class);
             startActivity(notif);
-            finish();
         } else if (id == R.id.nav_offers) {
             Intent offers = new Intent(AboutActivity.this,OffersActivity.class);
             startActivity(offers);
-            finish();
         } else if (id == R.id.nav_about) {
             Intent offers = new Intent(AboutActivity.this,AboutActivity.class);
             startActivity(offers);
-            finish();
         } else if (id == R.id.nav_terms_cond) {
-            Intent terms = new Intent(AboutActivity.this,OffersActivity.class);
+            Intent terms = new Intent(AboutActivity.this,TermsActivity.class);
             startActivity(terms);
-            finish();
         }  else if (id == R.id.nav_share) {
             ApplicationInfo app = getApplicationContext().getApplicationInfo();
             String filePath = app.sourceDir;
@@ -128,18 +121,10 @@ public class AboutActivity extends AppCompatActivity
             intent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(new File(filePath)));
             startActivity(Intent.createChooser(intent, "Share app using :"));
         } else if (id == R.id.nav_logout) {
-            AuthUI.getInstance().signOut(this)
-                    .addOnCompleteListener(new OnCompleteListener<Void>() {
-                        @Override
-                        public void onComplete(@NonNull Task<Void> task) {
-                            startActivity(new Intent(AboutActivity.this,LoginActivity.class));
-                            finish();
-                        }
-                    });
+
         }else if (id == R.id.nav_home){
             Intent home = new Intent(AboutActivity.this, MainActivity.class);
             startActivity(home);
-            finish();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

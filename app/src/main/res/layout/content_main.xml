@@ -1,98 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.narendra.quicklift2.MainActivity"
-    tools:showIn="@layout/app_bar_main">
-    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:map="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/map"
-        android:name="com.google.android.gms.maps.SupportMapFragment"
+    xmlns:CardView="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.narendra.quicklift2.MainActivity">
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context="com.example.narendra.quicklift2.MainActivity" />
-    <ScrollView
-        android:id="@+id/scroll_main"
-        android:layout_gravity="center_horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <LinearLayout
+        android:layout_height="wrap_content">
+
+        <!--source and destination view-->
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:layout_margin="10dp">
-            <EditText
-                android:id="@+id/source_main"
+            android:layout_height="wrap_content"
+            CardView:cardCornerRadius="5dp"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="70dp">
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="Source"
-                android:layout_gravity="top"
-                android:layout_marginTop="20dp"/>
-            <EditText
-                android:id="@+id/destination_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Destination"
-                android:layout_gravity="top"
-                android:layout_marginTop="10dp"/>
+                android:orientation="vertical"
+                android:layout_margin="10dp">
+                <EditText
+                    android:id="@+id/source_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress"
+                    android:hint="Source"/>
+                <EditText
+                    android:id="@+id/destination_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPostalAddress"
+                    android:hint="Destination" />
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--end of source and destination view-->
+        <!--start of map fragment-->
+        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <!--end of map fragment-->
+        <!--start of vehicle list fragment-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:id="@+id/vehicles_list"
+            android:layout_alignParentBottom="true">
             <HorizontalScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:scrollbars="none"
-                android:layout_marginTop="545sp"
                 android:id="@+id/fragmentTwo"
                 android:background="@android:color/transparent">
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@android:color/transparent">
-
                     <Button
                         android:id="@+id/bike"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_button"
                         android:text="Bike" />
-
                     <Button
                         android:id="@+id/car"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_button"
                         android:text="Car" />
-
                     <Button
                         android:id="@+id/shareCar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/round_button"
                         android:text="Share Car" />
-
                     <Button
                         android:id="@+id/auto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Auto"
                         android:background="@drawable/round_button"/>
-
                     <Button
                         android:id="@+id/shareAuto"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Share Auto"
                         android:background="@drawable/round_button"/>
-
                     <Button
                         android:id="@+id/rickshaw"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="E-Rickshaw"
                         android:background="@drawable/round_button"/>
-
                     <Button
                         android:id="@+id/shareRickshaw"
                         android:layout_width="wrap_content"
@@ -100,7 +106,6 @@
                         android:text="Share E-Rickshaw"
                         android:background="@drawable/round_button"/>
                 </LinearLayout>
-
             </HorizontalScrollView>
             <Button android:id="@+id/ride_button_main"
                 android:layout_width="match_parent"
@@ -110,26 +115,186 @@
                 android:background="@color/colorPrimary"
                 android:layout_gravity="bottom"
                 android:layout_marginTop="10dp"/>
+        </FrameLayout>
+        <!--end of vehicle list view-->
+        <!--start of button view-->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+            android:layout_alignParentBottom="true">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:id="@+id/fare_main"
+                    android:text="Estimated Fare : $5"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center_horizontal"
+                    android:background="@color/colorPrimary"
+                    android:textSize="35dp" />
 
-            <TextView
-                android:id="@+id/fare_main"
-                android:layout_width="match_parent"
+                <GridLayout
+                    android:id="@+id/grid_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/fare_main"
+                    android:columnCount="2"
+                    android:rowCount="2">
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/confirm00"
+                        android:layout_row="0"
+                        android:layout_column="0"
+                        android:layout_width="300dp"
+                        android:layout_height="90dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="User"/>
+                            <Spinner
+                                android:id="@+id/user"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:spinnerMode="dropdown"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/confirm01"
+                        android:layout_row="0"
+                        android:layout_column="1"
+                        android:layout_width="300dp"
+                        android:layout_height="90dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Payment Method"/>
+                            <Spinner
+                                android:id="@+id/payment_method"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:spinnerMode="dropdown"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/confirm10"
+                        android:layout_row="1"
+                        android:layout_column="0"
+                        android:layout_width="300dp"
+                        android:layout_height="90dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Seat"/>
+                            <Spinner
+                                android:id="@+id/seat"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:spinnerMode="dropdown"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                    <android.support.v7.widget.CardView
+                        android:id="@+id/confirm11"
+                        android:layout_row="1"
+                        android:layout_column="1"
+                        android:layout_width="300dp"
+                        android:layout_height="90dp">
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Apply Coupon"/>
+                            <Spinner
+                                android:id="@+id/apply"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="10dp"
+                                android:spinnerMode="dropdown"/>
+                        </LinearLayout>
+                    </android.support.v7.widget.CardView>
+                </GridLayout>
+
+                <Button
+                    android:id="@+id/confirm_main"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Confirm"
+                    android:background="@color/colorPrimary"
+                    android:layout_below="@+id/grid_button"
+                    android:layout_marginBottom="5dp"
+                    android:textSize="20dp"/>
+
+            </RelativeLayout>
+        </FrameLayout>
+        <!--end of button view-->
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:id="@+id/fav_destination"
+            android:layout_alignParentBottom="true">
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Estimated Fare :"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center_horizontal"
-                android:foregroundGravity="bottom"
-                android:layout_marginTop="645dp"
-                android:textSize="20dp"/>
-            <Button
-                android:id="@+id/confirm_main"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Confirm"
-                android:background="@color/colorPrimary"
-                android:layout_gravity="bottom"
-                android:layout_marginTop="10dp"
-                android:textSize="20dp"/>
-        </LinearLayout>
-    </ScrollView>
-</android.support.constraint.ConstraintLayout>
+                android:scrollbars="none"
+                android:background="@android:color/transparent">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@android:color/transparent">
+
+                    <Button
+                        android:id="@+id/home"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_button"
+                        android:text="Home" />
+                    <Button
+                        android:id="@+id/work"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_button"
+                        android:text="Work" />
+
+                    <Button
+                        android:id="@+id/marathahalli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/round_button"
+                        android:text="Marathahalli" />
+                    <Button
+                        android:id="@+id/kadubisnahalli"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kadubisnahalli"
+                        android:background="@drawable/round_button"/>
+                    <Button
+                        android:id="@+id/extra"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="extra"
+                        android:background="@drawable/round_button"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+        </FrameLayout>
+    </RelativeLayout>
+</FrameLayout>

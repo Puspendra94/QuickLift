@@ -16,13 +16,13 @@ import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private static Button login,signup;
+    //private static Button login,signup;
 
-    //private final int REQUEST_LOGIN = 1000;
+    private final int REQUEST_LOGIN = 1000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-/*
+
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if(auth.getCurrentUser() != null) {
 
@@ -39,8 +39,8 @@ public class LoginActivity extends AppCompatActivity {
                             new AuthUI.IdpConfig.Builder(AuthUI.PHONE_VERIFICATION_PROVIDER).build()
                     )).build(),REQUEST_LOGIN);
         }
-*/
 
+/*
         setContentView(R.layout.activity_login);
 
         signup = findViewById(R.id.login2signup);
@@ -62,10 +62,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
+*/
 
     }
-/*
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -99,6 +99,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
     }
-    */
+
 
 }

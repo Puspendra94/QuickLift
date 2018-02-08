@@ -1,7 +1,9 @@
 package com.example.narendra.quicklift2;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ApplicationInfo;
 import android.net.Uri;
 import android.os.Bundle;
@@ -10,6 +12,9 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.widget.CardView;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -20,9 +25,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +47,15 @@ public class MainActivity extends AppCompatActivity
         implements OnMapReadyCallback,NavigationView.OnNavigationItemSelectedListener,View.OnClickListener{
 
     private GoogleMap mMap;
-    private static EditText source,dest;
-    private static TextView fare;
-    private static Button ride,confirm,bike,car,shareCar,auto,shareAuto,rickshaw,shareRickshaw;
-    private static HorizontalScrollView fragmentTwo;
+    private FrameLayout button,vehicle_list,fav_dest;
+    private EditText source,destination;
+    private TextView fare;
+    private CardView confirm0,confirm1,confirm2,confirm3;
+    private Spinner user_list,seat_num,coupon_list,payment;
+    String[] user_item,seat_item,coupon_item,payment_item;
+    private DisplayMetrics displayMetrics;
+    private Button bike,car,shareCar,auto,shareAuto,rickshaw,
+            shareRickshaw,ride,confirm,home,work,marathahalli,kadubisnahalli,extra;
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -63,35 +76,105 @@ public class MainActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        bike = findViewById(R.id.bike);
+        user_item = new String[]{"Personal","Add Other"};
+        seat_item = new String[]{"1","2","3","4","5","6"};
+        coupon_item = new String[]{"QUICK_LIFT_WLC","QUICK_LIFT_RIDE","QUICK_LIFT_FIRST"};
+        payment_item = new String[]{"Cash Mode","Paytm","PayUMoney"};
+
+        user_list = (Spinner) findViewById(R.id.user);
+        seat_num = (Spinner)findViewById(R.id.seat);
+        coupon_list = (Spinner)findViewById(R.id.apply);
+        payment = (Spinner)findViewById(R.id.payment_method);
+
+        ArrayAdapter<String> userAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, user_item);
+        ArrayAdapter<String> seatAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, seat_item);
+        ArrayAdapter<String> paymentAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, payment_item);
+        ArrayAdapter<String> couponAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, coupon_item);
+
+        user_list.setAdapter(userAdapter);
+        seat_num.setAdapter(seatAdapter);
+        coupon_list.setAdapter(couponAdapter);
+        payment.setAdapter(paymentAdapter);
+
+        fav_dest = (FrameLayout)findViewById(R.id.fav_destination);
+        button = (FrameLayout)findViewById(R.id.button);
+        vehicle_list = (FrameLayout)findViewById(R.id.vehicles_list);
+        source =  (EditText)findViewById(R.id.source_main);
+        destination = (EditText)findViewById(R.id.destination_main);
+        destination.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean b) {
+                if (b){
+                    hideFrame(fav_dest);
+                }else {
+                    String dest = destination.getText().toString().trim();
+                    if (TextUtils.isEmpty(dest)){
+                        showFrame(fav_dest);
+                    }else {
+                        String pickup = source.getText().toString().trim();
+                        if (TextUtils.isEmpty(pickup)){
+                            source.setFocusable(true);
+                        }else {
+                            hideFrame(fav_dest);
+                            showFrame(vehicle_list);
+                        }
+                    }
+                }
+            }
+        });
+
+        fare = (TextView)findViewById(R.id.fare_main);
+        fare.setOnClickListener(this);
+
+        bike = (Button)findViewById(R.id.bike);
         bike.setOnClickListener(this);
 
-        car = findViewById(R.id.car);
+        car = (Button)findViewById(R.id.car);
         car.setOnClickListener(this);
 
-        shareCar = findViewById(R.id.shareCar);
+        shareCar = (Button)findViewById(R.id.shareCar);
         shareCar.setOnClickListener(this);
 
-        auto = findViewById(R.id.auto);
+        auto = (Button)findViewById(R.id.auto);
         auto.setOnClickListener(this);
 
-        shareAuto = findViewById(R.id.shareAuto);
+        shareAuto = (Button)findViewById(R.id.shareAuto);
         shareAuto.setOnClickListener(this);
 
-        rickshaw = findViewById(R.id.rickshaw);
+        rickshaw = (Button)findViewById(R.id.rickshaw);
         rickshaw.setOnClickListener(this);
 
-        shareRickshaw = findViewById(R.id.shareRickshaw);
+        shareRickshaw = (Button)findViewById(R.id.shareRickshaw);
         shareRickshaw.setOnClickListener(this);
 
-        source = findViewById(R.id.source_main);
-        dest = findViewById(R.id.destination_main);
-        fare = findViewById(R.id.fare_main);
-        ride = findViewById(R.id.ride_button_main);
+        ride = (Button)findViewById(R.id.ride_button_main);
         ride.setOnClickListener(this);
-        confirm = findViewById(R.id.confirm_main);
+
+        confirm = (Button)findViewById(R.id.confirm_main);
         confirm.setOnClickListener(this);
-        fragmentTwo = findViewById(R.id.fragmentTwo);
+
+        home = (Button)findViewById(R.id.home);
+        home.setOnClickListener(this);
+
+        work = (Button)findViewById(R.id.work);
+        work.setOnClickListener(this);
+
+        marathahalli = (Button)findViewById(R.id.marathahalli);
+        marathahalli.setOnClickListener(this);
+
+        kadubisnahalli = (Button)findViewById(R.id.kadubisnahalli);
+        kadubisnahalli.setOnClickListener(this);
+
+        extra = (Button)findViewById(R.id.extra);
+        extra.setOnClickListener(this);
+
+        confirm0 = (CardView)findViewById(R.id.confirm00);
+        confirm1 = (CardView)findViewById(R.id.confirm01);
+        confirm2 = (CardView)findViewById(R.id.confirm10);
+        confirm3 = (CardView)findViewById(R.id.confirm11);
+
+        displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -120,123 +203,96 @@ public class MainActivity extends AppCompatActivity
 
             int id = view.getId();
             switch(id){
+                case R.id.work:
+                    destination.setText(work.getText());
+                    hideFrame(fav_dest);
+                    showFrame(vehicle_list);
+                    break;
+                case R.id.home:
+                    destination.setText(home.getText());
+                    hideFrame(fav_dest);
+                    showFrame(vehicle_list);
+                    break;
+                case R.id.marathahalli:
+                    destination.setText(marathahalli.getText());
+                    hideFrame(fav_dest);
+                    showFrame(vehicle_list);
+                    break;
+                case R.id.kadubisnahalli:
+                    destination.setText(kadubisnahalli.getText());
+                    hideFrame(fav_dest);
+                    showFrame(vehicle_list);
+                    break;
+                case R.id.extra:
+                    destination.setText(extra.getText());
+                    hideFrame(fav_dest);
+                    showFrame(vehicle_list);
+                    break;
                 case R.id.bike :
-                    Log.i("clicked Bike","Hide fragment");
-                    //transaction.detach(two);
-                    //transaction.commit();
-                    bike.setEnabled(false);
-                    car.setEnabled(true);
-                    shareCar.setEnabled(true);
-                    auto.setEnabled(true);
-                    shareAuto.setEnabled(true);
-                    rickshaw.setEnabled(true);
-                    shareRickshaw.setEnabled(true);
-                    ride.setVisibility(View.VISIBLE);
-                    fare.setVisibility(View.GONE);
-                    confirm.setVisibility(View.GONE);
+                    selectVehicle(bike);
                     break;
                 case R.id.car :
-                    bike.setEnabled(true);
-                    car.setEnabled(false);
-                    shareCar.setEnabled(true);
-                    auto.setEnabled(true);
-                    shareAuto.setEnabled(true);
-                    rickshaw.setEnabled(true);
-                    shareRickshaw.setEnabled(true);
-                    ride.setVisibility(View.VISIBLE);
-                    fare.setVisibility(View.GONE);
-                    confirm.setVisibility(View.GONE);
+                    selectVehicle(car);
                     break;
                 case R.id.shareCar :
-                    bike.setEnabled(true);
-                    car.setEnabled(true);
-                    shareCar.setEnabled(false);
-                    auto.setEnabled(true);
-                    shareAuto.setEnabled(true);
-                    rickshaw.setEnabled(true);
-                    shareRickshaw.setEnabled(true);
-                    ride.setVisibility(View.VISIBLE);
-                    fare.setVisibility(View.GONE);
-                    confirm.setVisibility(View.GONE);
+                    selectVehicle(shareCar);
                     break;
                 case R.id.auto :
-                    bike.setEnabled(true);
-                    car.setEnabled(true);
-                    shareCar.setEnabled(true);
-                    auto.setEnabled(false);
-                    shareAuto.setEnabled(true);
-                    rickshaw.setEnabled(true);
-                    shareRickshaw.setEnabled(true);
-                    ride.setVisibility(View.VISIBLE);
-                    fare.setVisibility(View.GONE);
-                    confirm.setVisibility(View.GONE);
+                    selectVehicle(auto);
                     break;
                 case R.id.shareAuto :
-                    bike.setEnabled(true);
-                    car.setEnabled(true);
-                    shareCar.setEnabled(true);
-                    auto.setEnabled(true);
-                    shareAuto.setEnabled(false);
-                    rickshaw.setEnabled(true);
-                    shareRickshaw.setEnabled(true);
-                    ride.setVisibility(View.VISIBLE);
-                    fare.setVisibility(View.GONE);
-                    confirm.setVisibility(View.GONE);
+                    selectVehicle(shareAuto);
                     break;
                 case R.id.rickshaw :
-                    bike.setEnabled(true);
-                    car.setEnabled(true);
-                    shareCar.setEnabled(true);
-                    auto.setEnabled(true);
-                    shareAuto.setEnabled(true);
-                    rickshaw.setEnabled(false);
-                    shareRickshaw.setEnabled(true);
-                    ride.setVisibility(View.VISIBLE);
-                    fare.setVisibility(View.GONE);
-                    confirm.setVisibility(View.GONE);
+                    selectVehicle(rickshaw);
                     break;
                 case R.id.shareRickshaw :
-                    bike.setEnabled(true);
-                    car.setEnabled(true);
-                    shareCar.setEnabled(true);
-                    auto.setEnabled(true);
-                    shareAuto.setEnabled(true);
-                    rickshaw.setEnabled(true);
-                    shareRickshaw.setEnabled(false);
-                    ride.setVisibility(View.VISIBLE);
-                    fare.setVisibility(View.GONE);
-                    confirm.setVisibility(View.GONE);
+                    selectVehicle(shareRickshaw);
                     break;
                 case R.id.ride_button_main:
                     Log.i("ride button","ride button clicked");
-                    fragmentTwo.setVisibility(View.GONE);
-                    ride.setVisibility(View.GONE);
-                    fare.setVisibility(View.VISIBLE);
-                    confirm.setVisibility(View.VISIBLE);
+                    hideFrame(vehicle_list);
+                    showFrame(button);
                     break;
-                default:
-                    fragmentTwo.setVisibility(View.VISIBLE);
-                    bike.setEnabled(true);
-                    car.setEnabled(true);
-                    shareCar.setEnabled(true);
-                    auto.setEnabled(true);
-                    shareAuto.setEnabled(true);
-                    rickshaw.setEnabled(true);
-                    shareRickshaw.setEnabled(false);
-                    ride.setVisibility(View.GONE);
-                    fare.setVisibility(View.GONE);
-                    confirm.setVisibility(View.GONE);
+                case R.id.confirm_main:
+                    hideFrame(button);
+                    Toast.makeText(this, "Show Driver Information", Toast.LENGTH_SHORT).show();
+                    break;
             }
     }
 
+    private void selectVehicle(Button button){
+        bike.setEnabled(true);
+        car.setEnabled(true);
+        shareCar.setEnabled(true);
+        auto.setEnabled(true);
+        shareAuto.setEnabled(true);
+        rickshaw.setEnabled(true);
+        shareRickshaw.setEnabled(true);
+        button.setEnabled(false);
+        ride.setVisibility(View.VISIBLE);
+    }
     @Override
     protected void onStart() {
         super.onStart();
-        fragmentTwo.setVisibility(View.VISIBLE);
+        showFrame(fav_dest);
+        hideFrame(button);
+        hideFrame(vehicle_list);
         ride.setVisibility(View.GONE);
-        fare.setVisibility(View.GONE);
-        confirm.setVisibility(View.GONE);
 
+        int width = displayMetrics.widthPixels/2;
+        confirm0.setMinimumWidth(width);
+        confirm1.setMinimumWidth(width);
+        confirm2.setMinimumWidth(width);
+        confirm3.setMinimumWidth(width);
+    }
+
+    private void showFrame(FrameLayout frameLayout){
+        frameLayout.setVisibility(View.VISIBLE);
+    }
+
+    private void hideFrame(FrameLayout frameLayout){
+        frameLayout.setVisibility(View.GONE);
     }
 
     @Override
@@ -279,23 +335,18 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_free_rides) {
             Intent free_ride = new Intent(MainActivity.this,FreeRideActivity.class);
             startActivity(free_ride);
-            finish();
         } else if (id == R.id.nav_notif) {
             Intent notif = new Intent(MainActivity.this,NotifActivity.class);
             startActivity(notif);
-            finish();
         } else if (id == R.id.nav_offers) {
             Intent offers = new Intent(MainActivity.this,OffersActivity.class);
             startActivity(offers);
-            finish();
         } else if (id == R.id.nav_about) {
             Intent offers = new Intent(MainActivity.this,AboutActivity.class);
             startActivity(offers);
-            finish();
         } else if (id == R.id.nav_terms_cond) {
-            Intent terms = new Intent(MainActivity.this,OffersActivity.class);
+            Intent terms = new Intent(MainActivity.this,TermsActivity.class);
             startActivity(terms);
-            finish();
         }  else if (id == R.id.nav_share) {
             ApplicationInfo app = getApplicationContext().getApplicationInfo();
             String filePath = app.sourceDir;
@@ -305,8 +356,7 @@ public class MainActivity extends AppCompatActivity
             startActivity(Intent.createChooser(intent, "Share app using :"));
 
         } else if (id == R.id.nav_logout) {
-            /*
-            if (getIntent().getStringExtra("phone")!= null){
+            if (getIntent().getStringExtra("phone") !=  null){
                 AuthUI.getInstance().signOut(this)
                         .addOnCompleteListener(new OnCompleteListener<Void>() {
                             @Override
@@ -314,13 +364,10 @@ public class MainActivity extends AppCompatActivity
                                 startActivity(new Intent(MainActivity.this,LoginActivity.class));
                                 finish();
                             }
-
                         });
             }else{
                 Toast.makeText(this, "phone is empty", Toast.LENGTH_SHORT).show();
             }
-            */
-
         }else if (id == R.id.nav_home){
             Intent home = new Intent(MainActivity.this, MainActivity.class);
             startActivity(home);
@@ -330,4 +377,6 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }
