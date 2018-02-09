@@ -2,48 +2,12 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="/home/pandey/.android/build-cache/5e98d6d2abd37e9f1a054f1f192a483acbdc9246/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="6555c483abcdcc71ef5f1d47bb1ff3fee35ef1b2">
-        <dex dex="/home/pandey/AndroidStudioProjects/QuickLift2/app/build/intermediates/pre-dexed/debug/classes_13872ca2b73837052109207f4818b045dc2939ab.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/pandey/.android/build-cache/c348a395bfede81f3e4629ea0cba1274c13cf4c3/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="6e6b94b72d7912a627fb1629c310b2bca9261f06">
-        <dex dex="/home/pandey/AndroidStudioProjects/QuickLift2/app/build/intermediates/pre-dexed/debug/classes_f2082dd83a125f9dd52e0f76ef942ad1fbc7bb6d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/pandey/.android/build-cache/cedc8585a538a72e1a22dd05f574691d48a959c0/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="2f552156e824f318819b664ab932f61d12cfa2f4">
-        <dex dex="/home/pandey/AndroidStudioProjects/QuickLift2/app/build/intermediates/pre-dexed/debug/classes_5167b1bdd839df88872ba64745b89f5189700fa3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/pandey/.android/build-cache/2212c4c371b2b494ad0e85334af3150ddf32f1a6/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="bed98ea7af8c5c4202820875e856dd3eb296e22d">
-        <dex dex="/home/pandey/AndroidStudioProjects/QuickLift2/app/build/intermediates/pre-dexed/debug/classes_10d2d41fec24dba7cf588f332ca80481d2e9897e.jar" />
-    </item>
-    <item
         is-multidex="true"
         jar="/home/pandey/AndroidStudioProjects/QuickLift2/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
         jumboMode="true"
         optimize="true"
         revision="26.0.2"
-        sha1="67ba99dbb762171bbac9bb2ea21e5dfb94624748">
+        sha1="a6d9b30ade6fa3789b3a965a1c5cb8b49ca9c2ed">
         <dex dex="/home/pandey/AndroidStudioProjects/QuickLift2/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_2c4cb520fb32eadfeec43ff4315b309b67abf0f5/classes.dex" />
     </item>
     <item
@@ -54,15 +18,6 @@
         revision="26.0.2"
         sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="/home/pandey/AndroidStudioProjects/QuickLift2/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_0c710638b2388f7940c93c9559e8871147840a84/classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="/home/pandey/.android/build-cache/59441580e5e41c4730fc8d5119fe23c2850bfeb9/output/jars/classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="26.0.2"
-        sha1="20d6aa9a18ea9833cd2bee95dff7cd303cdb80e4">
-        <dex dex="/home/pandey/AndroidStudioProjects/QuickLift2/app/build/intermediates/pre-dexed/debug/classes_63eba249f19276e12f307040cb0ad807b0e9b1ca.jar" />
     </item>
 
 </items>
